@@ -43,7 +43,7 @@ def download_enigma_strain_metadata():
                         )
             break
         try:
-            logger.info(data['id'] + ' ' + data['isolate_id'])
+            logger.info(str(data['id']) + ' ' + data['isolate_id'])
             strain_id = data['isolate_id']
             for field in fields:
                 if field[0] in data:
