@@ -74,7 +74,6 @@ def check_enigma_repository(username, password):
         config[item['param']] = item['value']
 
     download_dir = os.path.join(config['core.temp_dir'], 'genomes_update_' + timestamp)
-    Path(download_dir).mkdir(exist_ok=True, parents=True)
 
     #importer = Importer()
     existing_genomes = defaultdict(dict)
@@ -117,7 +116,7 @@ def check_enigma_repository(username, password):
                 kbase_id = row[5].split(': ')[-1]
             else:
                 kbase_id = row[5]
-            gbff_file= os.path.join(download_dir,genome_id + '.gbff')
+            gbff_file = os.path.join(download_dir,genome_id + '.gbff')
             if strain_id in existing_genomes:
                 if genome_id in existing_genomes[strain_id]:
                     print('Genome found', genome_id, 'of', strain_id)
@@ -147,6 +146,7 @@ def check_enigma_repository(username, password):
 
     print('Downloading', len(output_table), 'genomes')
     genome_count = 0
+    Path(download_dir).mkdir(exist_ok=True, parents=True)
     with open(os.path.join(download_dir, 'enigma_genomes_update_' + timestamp + '.txt'), 'w') as out_log:
         out_log.write('#gbk_file\tGenome\tStrain\tSample\tURL\tExternalID\n')
         for row in output_table:
