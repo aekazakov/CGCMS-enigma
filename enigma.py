@@ -143,7 +143,7 @@ def check_enigma_repository(username, password):
                     
     if not output_table:
         ret.append('New genomes not found')
-        return '\n'.join(ret)
+        return '\n'.join(ret), 'No new genomes in the ENIGMA data repository'
 
     print('Downloading', len(output_table), 'genomes')
     genome_count = 0
@@ -164,5 +164,5 @@ def check_enigma_repository(username, password):
             #break
     ret.insert(0, "New genomes: " + str(len(output_table)))
     ret.insert(0, f"New genomes downloaded: {genome_count}")
-    return '\n'.join(ret)
+    return '\n'.join(ret), 'NEW GENOMES found in the ENIGMA data repository!'
         
